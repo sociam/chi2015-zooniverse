@@ -1,0 +1,536 @@
+% Changes made for the rebuttal - to submit with final version
+% In accordance to the changes discussed in the rebuttal, the final version contains the following changes:
+% 1. Change of title to reflect the content and contribution of the paper
+% 2. Changes to the use of 'themes' within the discussion - make it clear that it is for organisational purposes rather than theoretical (pg. XX). The names have also changed to better reflect the context of the DCs .
+% 3. Added additional section in the discussion - `comparison with other Citizen Science projects' (pg. XX). Added refereces to the latest papers on Zooniverse studies.
+% 4. Connected the discussion to the background literature more closely. This is at various points in the discussion section.
+% 5. Add clarity to the method and analysis section (pg. XX)
+% 6. Corrected typos found by reviewers and final proofing (pg. various)
+% 7. Added references used in the discussion and 
+
+\documentclass{sigchi}
+
+% Use this command to override the default ACM copyright statement (e.g. for preprints). 
+% Consult the conference website for the camera-ready copyright statement.
+\toappear{\scriptsize Permission to make digital or hard copies of all or part of this work for personal or classroom use is granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for components of this work owned by others than ACM must be honored. Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from permissions@acm.org. \\
+{\emph{CHI 2015}}, April 18--23, 2015, Seoul, Republic of Korea. \\
+Copyright \copyright~2015 ACM 978-1-4503-3145-6/15/04\ ...\$15.00. \\
+http://dx.doi.org/10.1145/2702123.2702420}
+\clubpenalty=10000 
+\widowpenalty = 10000
+
+% Arabic page numbers for submission. 
+% Remove this line to eliminate page numbers for the camera ready copy
+%\pagenumbering{arabic}
+
+
+% Load basic packages
+\usepackage{balance} % to better equalize the last page
+\usepackage{graphics} % for EPS, load graphicx instead
+\usepackage{times} % comment if you want LaTeX's default font
+\usepackage[hyphens]{url} % llt: nicely formatted URLs
+\usepackage{algorithm,algorithmic}	
+\usepackage{enumitem}
+\usepackage{arydshln}
+\usepackage{setspace}
+
+
+
+% llt: Define a global style for URLs, rather that the default one
+\makeatletter
+\def\url@leostyle{%
+ \@ifundefined{selectfont}{\def\UrlFont{\sf}}{\def\UrlFont{\small\bf\ttfamily}}}
+\makeatother
+\urlstyle{leo}
+
+
+% To make various LaTeX processors do the right thing with page size.
+\def\pprw{8.5in}
+\def\pprh{11in}
+\special{papersize=\pprw,\pprh}
+\setlength{\paperwidth}{\pprw}
+\setlength{\paperheight}{\pprh}
+\setlength{\pdfpagewidth}{\pprw}
+\setlength{\pdfpageheight}{\pprh}
+\addtolength{\parskip}{-8mm}
+%\widowpenalty=-1000
+%\clubpenalty=-1000
+
+
+% Make sure hyperref comes last of your loaded packages, 
+% to give it a fighting chance of not being over-written, 
+% since its job is to redefine many LaTeX commands.
+\usepackage[pdftex]{hyperref}
+\hypersetup{
+pdftitle={SIGCHI Conference Proceedings Format},
+pdfauthor={LaTeX},
+pdfkeywords={SIGCHI, proceedings, archival format},
+bookmarksnumbered,
+pdfstartview={FitH},
+colorlinks,
+citecolor=black,
+filecolor=black,
+linkcolor=black,
+urlcolor=black,
+breaklinks=true,
+}
+
+\usepackage{url}
+
+% create a shortcut to typeset table headings
+\newcommand\tabhead[1]{\small\textbf{#1}}
+
+% End of preamble. Here it comes the document.
+\begin{document}
+
+% \title{Citizen-Driven Data Analysis: A Cross-Sectional Case Study of a Multi-Domain Citizen Science Platform}
+\title{Designing for Citizen Data Analysis: A Cross-Sectional Case Study of a Multi-Domain Citizen Science Platform}
+
+% I have decided this looks terrible, so we're going back to separate authors:
+% \numberofauthors{2}
+% \author{
+%  \alignauthor Ramine Tinati, Max Van Kleek,\\ Elena Simperl, Markus Luczak-Roesch, \\ Nigel Shadbolt\\
+%   \affaddr{University of Southampton}\\
+%   \email{[r.tinati,emax,e.simperl,m.luczak,nrs]@soton.ac.uk}\\
+%   \alignauthor Robert Simpson\\
+%   \affaddr{University of Oxford}\\
+%   \email{rob.simpson@ox.ac.uk}\\
+% }
+\numberofauthors{6}
+\author{
+ \alignauthor Ramine Tinati\\
+  % \affaddr{Web and Internet Science}\\
+  \affaddr{University of Southampton}\\
+  \email{r.tinati@soton.ac.uk}\\
+ \alignauthor Max Van Kleek\\
+  % \affaddr{Web and Internet Science}\\
+  \affaddr{University of Southampton}\\
+  \email{emax@soton.ac.uk}\\
+   \alignauthor Elena Simperl\\
+  % \affaddr{Web and Internet Science}\\
+  \affaddr{University of Southampton}\\
+  \email{e.simperl@soton.ac.uk}\\
+   \alignauthor Markus Luczak-Roesch\\
+  % \affaddr{Web and Internet Science}\\
+  \affaddr{University of Southampton}\\
+  \email{M.Luczak-Rosch@soton.ac.uk}\\
+   \alignauthor Robert Simpson\\
+  % \affaddr{Web and Internet Science}\\
+  \affaddr{University of Oxford}\\
+  \email{rob.simpson@ox.ac.uk}\\
+   \alignauthor Nigel Shadbolt\\
+  % \affaddr{Web and Internet Science}\\
+  \affaddr{University of Southampton}\\
+  \email{nrs@soton.ac.uk}\\
+}
+
+
+\maketitle
+\begin{spacing}{0.97}
+
+\begin{abstract}    
+Designing an effective and sustainable citizen science (CS) project requires consideration of a great number of factors. This makes the overall process unpredictable, even when a sound, user-centred design approach is followed by an experienced team of UX designers. Moreover, when such systems are deployed, the complexity of the resulting interactions challenges any attempt to generalisation from retrospective analysis. In this paper, we present a case study of the largest single platform of citizen driven data analysis projects to date, the Zooniverse. By eliciting, through structured reflection, experiences of core members of its design team, our grounded analysis yielded four sets of themes, focusing on \emph{Task Specificity}, \emph{Community Development}, \emph{Task Design} and \emph{Public Relations and Engagement}. For each, we propose a set of design claims (DCs), drawing comparisons to the literature on crowdsourcing and online communities to contextualise our findings.
+\end{abstract}
+
+\keywords{Citizen science, crowdsourcing, online communities}
+
+\category{H.5.m.}{Information Interfaces and Presentation (e.g. HCI)}{Miscellaneous}
+
+\section{Introduction}
+\label{sec:introduction}
+
+Online citizen science (CS) has proven to be not only a practical and effective means of solving previously infeasible, large-scale scientific problems, but also a valuable education tool ~\cite{silvertown2009new}, and, for the scientifically curious, an entertaining, and sometimes addictive, past-time \cite{raddick2010galaxy}. While we can find exemplars of such systems in many shapes and forms, those that have seen the greatest success have excelled at (at least) two things: first, they managed to accomplish the particular set of scientific objectives sought, and, second, they were able to attract and sustain the interest and support of a critical mass of volunteers over time. 
+
+Jointly achieving these two goals is a difficult task. The design of a CS project requires consideration of a great number of factors. This makes the overall process unpredictable, even when a sound, user-centred design approach is followed by an experienced team of UX designers. As a result, it poses significant barriers towards establishing CS as a valid and widely accepted scientific methodology, as smaller research groups appreciative of the CS concept cannot be expected to have the expertise and resources that are essential for a purposeful design and user engagement strategy. 
+
+This situation is due to the novelty of the field as well as the challenges associated with recruiting a volunteer participant population. Most citizen science projects rely on contributions primarily driven by intrinsic motivations \cite{raddick2010galaxy,Tinati2014}. Their design has to reflect the values of the community of amateur scientists supporting them, and, in the same time, to enable effective problem solving through the crowd. Even if we consider the large body of literature that offers advice and experience reports in building online communities and similar systems \cite{lampe2010motivations,kraut2012building}, many of the issues, including the feasibility of the tasks to be accomplished, the skills they require, or the process used to launch and advertise the project, are unique to the context of citizen science \cite{ebird,druschke2012failures}. The aim of this paper is to come up with a set of design guidelines by which this high-dimensional design space can be better understood. 
+
+To do so, we studied the largest single platform of CS projects to date, the Zooniverse. Through a process of structured reflection, we elicited insights and experienced deemed most important from core members of its design team. Our grounded analysis of these experiences yielded four sets of themes, comprising \emph{Task-Community Integration}, \emph{Community}, \emph{Task Design} and \emph{Public Relations and Engagement}, supported by two-to-four specific design claims each. Based on these findings, we synthesised a set of design recommendations, drawing comparisons to literature on crowdsourcing and online communities to gain a better understanding and inform the development of future systems in this space.
+
+\section{Background and Related Work}
+We consider two perspectives on CS initiatives: a crowdsourcing perspective that views CS as large-scale volunteer-driven human computation systems, and an online communities perspective, that considers the social and other communication activity that supports CS work around the tasks.
+\\
+
+\subsection{Citizen Science}
+Unlike in traditional scientific collaboration, citizen science is characterised by a majority (or significant constituency) of participants engaging with a scientific investigation on `an avocational basis' \cite{CSDefinition2011}. Online citizen science systems, in which participants engage in scientific activities through the Web, have typically enlisted the help of participants with three kinds of activities: data collection/curation (e.g., \cite{zook2010volunteered}); data analysis (e.g. \cite{westphal2005stardust,heinzelman2010crowdsourcing}); and problem-solving (e.g., \cite{khatib2011algorithm,cordero2012rna}). The Zooniverse platform \cite{fortson2011galaxy} fits the second category; small professional science teams, who provide the raw digital artefacts for each project, such as images, video and audio recordings, light curves, and other data representations, are supported by vast numbers of members of the general public who voluntarily identify, classify, and label the data according to instructions and loose direction provided by the science teams. 
+
+Previous work has studied a variety of different aspects of CS systems. Analysis of the factors that most influence accuracy and completion of tasks, as well as methods for improving such performance such as through refined task selection have been studied~\cite{ebird,kawrykow2012}, as well as task scheduling heuristics~\cite{khatib2011algorithm}. Wiggens et al.~\cite{wiggins2011conservation} analysed CS projects as online communities and modelled CS community organisation through the relationship between volunteering, digital technologies, and workplaces. Other studies have sought to understand the core motivations of citizen scientists (e.g.~\cite{raddick2008galaxy,rotman2012}), while others have focused on documenting the increasingly common citizen-initiated serendipitous scientific discoveries~\cite{schwamb2013planet}. Such studies often reference the vast psychology and social psychology literature relating to human motivation to provide a theoretical grounding for continued engagement with CS systems~\cite{Winfried2009}.
+
+%including extrinsic, intrinsic and social factors such as altruism, desire for knowledge and power, the drive of self-actualisation, community status and solidarity~\cite{Winfried2009}.
+
+\subsection{Online Communities}
+Online communities studies include the analysis of how members cooperate, compete, and form and re-form groups (e.g., \cite{Arguello2006}), to how information is shared within and across groups \cite{Krieger2009}, to how characteristics of communities change over time \cite{Kumar2006}. Others have looked at, to name a few, question-answering communities such as Yahoo! Answers \cite{Harper2009}, knowledge sharing on expert sites such as Stack Overflow \cite{vasilescu2013stackoverflow}, Wikipedia \cite{Kittur2008}, MOOCs \cite{milligan2013patterns}, MUDs \cite{bruckman1995mediamoo} and MMOs \cite{szell2010multirelational}. There are also several studies which have identified how the characteristics of an online community during the early stages of its formation can indicate its future growth and stability \cite{Kairam2012,Backstrom2006}.
+
+The core of this paper derives inspiration from Kraut, Resnick et al.'s \emph{Building Successful Online Communities} \cite{kraut2012building}, which addresses the idea of \emph{designing from evidence}, providing a synthesis of relevant theory pertaining to the understanding of communities, alongside methods for translating such theory into design practice. We have structured our main results as \emph{Design Claims} about citizen science platforms to facilitate comparison with their more general counterparts in their volume. 
+
+\section{The Zooniverse Platform}
+
+\begin{spacing}{0.8}
+
+\begin{table}[t]
+\begin{center}
+\small
+\begin{tabular}{p{2.15cm}lp{0.7cm}llc}
+\hline
+Project & Launch & Domain & Users & Subjects & Task \\
+\hline
+\hline
+Galaxy Zoo* & 07-07 & S & 165,000 & 890,000 & C \\
+\hline
+Galaxy Zoo* 2 & 02-09 & S & 223,965 & 304,122 & C \\
+GZ Mergers* & 11-09 & S & 20,588 & 58,956 & C \\
+\hline
+Solar Stormwatch & 02-10 & S & 65,971 & N/A & C/M \\
+GZ Supernova* & 03-10 & S & 37,150 & 76,376 & C \\
+GZ Hubble* & 04-10 & S & 2,735 & ~200,000 & C \\
+Moon Zoo & 05-10 & S & 121,251 & 435,314 & M \\
+Old Weather & 10-10 & C & 32,076 & 1,090,745 & T \\
+Milky Way & 12-10 & S & 66,495 & 109,459 & M \\
+Planet Hunters & 12-10 & S & 167,354 & 3,063,759 & M \\
+\hline
+Ancient Lives & 07-11 & H & 24,983 & 153,885 & T \\
+Ice Hunters* & 08-11 & S & 15,276 & 6,300,518 & C/M \\
+NEEMO* & 10-11 & S & 485 & N/A & C \\
+Whale FM & 11-11 & N & 2,150 & 15,531 & C \\
+\hline
+SETI Live* & 02-12 & S & 63,609 & 27,004 & C \\
+Galaxy Zoo 4 & 09-12 & S & 85,758 & 365,193 & C \\
+Seafloor Explorer & 09-12 & N & 21,112 & 123,077 & M \\
+Cyclone Center & 09-12 & C & 7,210 & 84,231 & C \\
+Bat Detective & 10-12 & N & 2,500 & 491,221 & C \\
+Cell Slider & 10-12 & B & 19,368 & 275,702 & C \\
+Andromeda Project* & 12-12 & S & 10,547 & 20,106 & M \\
+Snapshot Serengeti & 12-12 & N & 31,559 & 1,545,399 & C \\
+\hline
+Planet Four & 01-13 & S & 43,975 & 59,442 & M \\
+Notes from Nature & 04-13 & N & 6,090 & 188,551 & M/T \\
+Space Warps* & 05-13 & S & 27,514 & 479,469 & M \\
+Worm Watch Lab & 06-13 & B & 6,425 & 74,016 & C \\	
+Plankton Portal & 09-13 & N & 5,227 & 338,060 & C/M \\
+Radio Galaxy Zoo & 12-13 & S & 5,044 & 174,821 & C/M \\
+\hline
+Operation War Diary & 01-14 & H & 10,528 & 94,656 & M/T \\
+Disk Detective & 01-14 & S & 5,252 & 278,121 & C \\
+Condor Watch & 04-14 & N & 3,059 & 264,066 & M \\
+Sunspotter & 06-14 & S & 3,067 & 210,793 & C \\
+Asteroid Zoo & 06-14 & S & 5,332 & 90,000 & M \\
+Floating Forests & 08-14 & N & 1,924 & 778,506 & M \\
+Chicago Wildlife Watch & 09-14 & N & 81 & 4,052 & C \\
+Penguin Watch** & 09-14 & N & -- & 178,061 & C/M \\
+Higgs Hunters** & 10-14 & P & -- & 80,445 & C/M \\
+\hline
+\end{tabular}
+\caption{Summary of Zooniverse projects past and present, including each project's status as of September 2014. Domains: S -- space; C -- climate; H -- humanities; N -- nature; B -- biology; P -- physics. Tasks: C -- classifying; M -- marking; T -- transcribing. Projects marked with a * have been retired; ** indicates a project that had not launched at time of writing; in more recent projects where participation is possible without logging in this is a lower bound to the total participation rate.}
+\label{table:project-summary}
+\normalsize
+\end{center}
+\end{table}
+\end{spacing}
+
+The Zooniverse is a web-based platform that hosts many citizen science projects. The first Zooniverse project, \emph{Galaxy Zoo}, was launched July 2007 and invited volunteers to participate in the morphological classification of images of galaxies \cite{lintott2008galaxy,fortson2011galaxy}. The early success of Galaxy Zoo led the Zooniverse team to branch out to new domains and task types. Table \ref{table:project-summary} lists all Zooniverse projects order by their launch date, and indicates their status, subjects processed, and domain. As of August 2014, Zooniverse has gained over one million active volunteers. \emph{Retired} projects have achieved their classification goals and are now closed. \emph{Active} projects are those still open for new contributions. 
+
+%Zooniverse-assisted scientific findings have been published in over 57 journal articles within the natural sciences and the humanities, 39 of these publications have resulted from the Galaxy Zoo project alone. While most of the specific discoveries made through Zooniverse have been documented elsewhere (e.g., \cite{lintott2008galaxy,lintott2009galaxy,story-of-the-peas,simpson2013dynamic}), the insights gained by the team through the iterative process of designing, deploying, and managing the over 27 citizen-science projects. 
+
+\section{Methodology and Analytical Framework}
+
+Since our goal of identifying the critical decisions, supporting rationale, key internal, external and other factors that most influenced the development of the Zooniverse platform over its first 5 years potentially involved many project-related sources, as well as insights from those who were involved in its creation, we adopted a structured reflection \cite{Hilliard2006} approach to our investigation, with two foundational members of the Zooniverse team. These individuals were selected because they were responsible for nearly all decisions at the beginning of the project, and remained highly integral throughout. These reflection sessions took place over two days; audio was recorded during the sessions, and later transcribed and annotated. During these sessions, we encouraged the individuals to draw upon their own notes, meetings, design decisions, and internal communication records in order to translate their actions into a systematic order, providing the analysis with the required information to bridge the theory-practice gap \cite{Bulman2004}. During each session, we asked clarification questions in order to connect recollections and thoughts with documents where possible. 
+
+
+% In addition to the Zooniverse team's analysis, we conducted a number of semi-structured interviews. Performed over a consecutive period of two days, observations and interviews included individuals responsible for development, project management, and project support. Each interview was conducted with two members of the research team, audio recorded and then transcribed and annotated. We requested that the interviewees referred back to the documentation collected during the structured reflection process in order to relate their discussion to related documents, where possible. 
+
+The transcripts then underwent a thematic coding processes to elicit the core topics discussed. Based upon a grounded theory approach \cite{mazzolini2003sage}, the coding process was conducted by three members of our research team. Each member initially coded the transcripts individually and their list of codes were then compared, discussed, and adjusted until consensus was reached. In addition to the interview data, we were granted access to several core project data repositories prior to the aforementioned sessions, including discussion boards for four Zooniverse projects, \emph{Talk} pages for 14 projects, as well as 26 Zooniverse-related blogs. These data represented a snapshot of the entire Zooniverse system from September 2013, encompassing 250,044 Zooniverse users, 50,995,591 completed tasks, and 650,243 Talk pages. Such artefacts were used primarily to derive a high-level summary of the project's evolution, and to identify evidence that might support or contradict the design claims derived from the coding process. % , and by applying statistical measures related to user activity, we were able to compare the operation of the platform with the interview data and design claims.
+
+%The interviews were structured around three questions: (1) \emph{When you design and launch a new project now, what do you do differently than you would done at the start?}, (2) \emph{Were there any surprises, or unexpected outcomes?}, (3) \emph{What made projects most and least successful?}.
+
+\subsubsection{Analytical Framework}
+
+We derived our framework from Kraut, Resnik et al.~\cite{kraut2012building} study of online communities. Our design claims (DCs) were mapped, through a thematic coding process, to a set of emergent topics which we organised into different categories based on their content and context (e.g., community structure, external communications, task design). Some of our findings overlap with Kraut's existing guidelines, while, the rest, which we designate as ``New'' below in results, are new observations specific to CS communities. 
+
+% original :: Our analytical framework for successful citizen data analysis was based on a framework for successful online communities by Kraut, Resnik et al.~\cite{kraut2012building}. Our design claims (DCs) mapped to a set of emergent topics which we organised into different categories based on their content and context (e.g., community structure, external communications, task design). These were identified through the thematic coding of the interview transcripts. Some of our findings correspond to existing guidelines from the literature \cite{kraut2012building}; others, we would argue, are unique to online citizen science communities, and are marked in the text with the keyword ``New''. 
+
+
+\section{Results: Key Themes and Design Claims}
+We present our analysis based on the structured reflection and the thematically coded interviews. In collaboration with the Zooniverse team, we have organised design claims around four themes corresponding to \emph{Task Specificity}, \emph{Community Development}, \emph{Task Design} and \emph{Public Relations and Engagement}. The choice of these themes pertained to the corresponding discussions and examples provided by the interviewees regarding (user) activity in a system, problems identified during system deployment, the solutions they adopted, or a behaviour that was unique to a system. Table \ref{tbl:recommendations} summarises the themes and Design Claims assigned to each. %(The title and grouping of the design claims into these themes is organisational for the purposes of discussion, rather than based upon an underlying theoretical premise.)  % , and in some cases a DC may span across themes.
+
+%\begin{table}
+%\small
+%\begin{center}
+%\begin{tabular}{p{1.5cm}p{5.5cm}p{1cm}}
+%Code (main class) & Description & Theme \\
+%\hline
+%\emph{Bootstrapping} & codes related to the birth and initial stages of a project's launch & SDI, TD \\
+%\emph{Community} & codes related to the activities of the community both in talk and task & SDI, CSS, I\\
+%\emph{Discoveries} & codes related to the activities surrounding discoveries made by the community I, CSS & \\
+%\emph{Design} & codes related to the design of the Zooniverse platform & SDI, TD\\
+%\emph{Interface} & codes related to specifics of the Zooniverse interface & SDI, I, TD \\
+%\emph{Observations} & codes related to system observations (i.e. how individuals were using the system) & I, CSS\\
+%\emph{Science} & codes related to science or knowledge within a subject domain (i.e. astrology, medicine) & I, TD, CSS\\
+%\emph{Support} & codes related to the support of the project and the community & CSS, I\\
+%\emph{Training} & codes related to the training and education of users & I, CSS \\
+%\end{tabular}
+%\caption{Thematic coding schema mapped to themes. Themes: SDI - System Design and Interface, I - Interaction, TD - Task Design, CSS - Communication, Socialising, Sharing}
+%\label{tbl:codingSchema}
+%\normalsize
+%\end{center}
+%\end{table}
+
+
+\subsection{Theme 1: Task Specificity}
+
+%\subsubsection{Community Discussion}
+%\textbf{\emph{Design Claim: In communities with lots of interaction spaces, navigation aids that highlight more active spaces will increase the net benefits members experience}}
+%Design Claim: Use existing technology to have a cheap and fast up-take, but there can be problems as it's not specific to the purpose to the system, it is for generla use.
+
+%\textbf{\emph{DC1: During the growth of an online community, a shift in effort is required from stimulating and managing the social interactions to further developing the technical infrastructure to support sustained user engagement}}
+\textbf{\emph{DC1: a) Citizen science participants want and need the ability to discuss aspects of projects and tasks. b) Standard message boards work well for small online citizen science communities, but do not scale well as communities grow; c) Lack of integration between discussion and task interfaces impedes communication and wastes community effort.}} During the launch of the first Zooniverse project in July 2007, there was no discussion space to accompany Galaxy Zoo. A groundswell of volunteers requested a forum, and so the researchers set up a standard, open-source, PHP Simple Machines Forum (SMF) in the early days of the project. PHP SMFs became the standard discussion tool for the first Zooniverse projects (Galaxy Zoo 2, Solar Stormwatch, Moon Zoo, and Old Weather) and provided a space for peer question-answering support, serendipitous collaboration, and social community building and sharing. The forums were low-cost to deploy, and low buy-in for new users, given the popularity of the forum interface in 2007. 
+
+As the forums expanded, it became clear that aspects of the PHP SMF design impeded their effective use for Zooniverse discussion. The linear, message-board format became difficult to navigate as the size of these forums grew. Moderators struggled to keep boards thematically consistent, with threads often ending up in different boards, duplicated, or with blended themes. Such problems, including fragmentation and duplicity mirror those well-known in many other large, online threaded discussion boards (e.g., \cite{murphy2004graduate}), and posed a serious challenge as some Galaxy Zoo boards expanded to over 5000 threads, collectively comprising over 650,000 posts. After several of the serendipitous discoveries were made, other problems such as the lack of integration between the forums and tasks became apparent. By early 2010, less than 10\% of users were active in both classification and discussion.
+
+In response, in August 2010 the Zooniverse team developed a bespoke forum, \emph{Talk}, which contained object-specific discussion boards, in addition to more typical forum structure. Talk's purpose was to promote Zooniverse discussion. As described by a member of the Zooniverse team, the initial stage of combining the forums with the task aimed to make it straightforward for a individual to enter a discussion relating to a particular subject or topic. The second goal, was to make discussions a part of the task workflow, by making discussions around the relevant subject salient during a tasks, making it possible to initiate new discussions in-situ within the task interface~\cite{norman2002design}. 
+%The new forums were categorised by the most common themes identified in the original forums (\emph{chat}, \emph{help}, \emph{science}); just as recommended by Kraut et al. it was deemed that the division of the forum space into topics, subjects, and categories helped reduce inactive spaces, improved navigation, and reduced overall fragmentation, making less work for moderators.
+Talk was integrated into the workflow process of new Zooniverse projects (starting with the Milky Way Project in December 2010);
+%in order to provide a more seamless mechanism for users to share observations and ask questions about subjects in the middle of performing classification tasks. 
+in September 2012, 40\% of users were active in both classification and discussion. The same figure held true in June 2014.
+
+In August 2014, the original Galaxy Zoo forum was retired, and turned into a read-only archive. This was done at the request of the Galaxy Zoo forum participants who wanted to migrate to Talk, where more discussion was happening. Among those requesting the forums be retired were several of the original members who requested the original forum in 2007, and who helped to moderate and keep it alive.
+
+% Thus, in addition to the existing design claims of discussion forums, we note that: %% LOOK HERE eMax says what?! is this meant to end that way?
+
+%reads much better, no other sections appear to flow together as such
+
+\textbf{\emph{DC2 (New): Task workflows which encourage discussion facilitate citizen-led discovery.}} Whilst the primary goal of a citizen science project is to complete the task within the pre-defined workflow, the Zooniverse experienced a number exciting \emph{citizen-led discoveries} as a consequence of users going beyond the requirements of the task and asking questions about unusual objects within an observation. Originally, the workflow of a Zooniverse project contained a series of tasks selected by the science team, which were devised to investigate a preselected set of problems. This workflow, the conventional path of most human computation systems, successfully yielded a majority of the findings for Zooniverse. However, the addition of discussion facilities opened a second pathway, which became apparent under a month after the Galaxy Zoo Forum first launched. By providing users with the tools to communicate, a user-driven process led to the discovery of a peculiarity object known as ``Hanny's Voorwerp'' \cite{lintott2009galaxy}. This would ultimately mark the project's first citizen-initiated discovery. 
+
+The research following the discovery of the \emph{Voorwerp} unfolded as it did because, being a rare astrophysical body quite unlike others, the science team quickly noticed it. In this case, citizen contributions were limited due to lack of access to other data sources, or telescopes for further follow-up or expertise. Moreover, being such an unusual form, most amateur scientists had never seen anything like it, and to validate the finding, the science team cross-referenced databases and tools that volunteers didn't have access to, running their own analyses before eventually applying for and scheduling time on telescopes with colleagues to gather more data.
+
+In contrast, other serendipitous discoveries have been made due to the self-organised effort of volunteers. The Galaxy Zoo \emph{Green Peas} \cite{cardamone2009galaxy,story-of-the-peas} discovery emerged because, whilst not common, pea galaxies were seen regularly enough that they were recognised by other citizens, which sparked a ``pea hunt'' amongst the self-titled ``pea corps''. According to a science team member, the discovery was initially overlooked as the science team were busy processing data being generated through the ``main path'', but also partially because it was believed the greenish appearance of the peas was merely artefactual of the imaging apparatus, as ``green glitches'' were quite common in the images. 
+
+Group-search based discoveries have been successful as well. On Old Weather, for example, a mass-tagging campaign took place to tally the number of men who were in sick bay on board the various ships. When huge spikes were seen in sick bay stays, this resulted in an independent rediscovery of the 1918 Spanish Flu. Similarly, a new type of emerging star-forming region was identified by volunteers on the Milky Way Project when citizens self-organised to seek ``yellow balls'' seen in the data. The discovery of a circumbinary planet on Planet Hunters \cite{schwamb2013planet} stands out from the rest in that the citizens derived their own astronomical models, generated from light curves autonomously without science team intervention. This example highlighted to the Zooniverse and its science teams that citizen volunteers could be true collaborators, and that citizen science systems served another important purpose, which was to bring users with varied capacities together around common problems of interest, across traditional organisational, national, and cultural boundaries.
+
+In several of the examples (Voorwerp, yellow balls etc.), the initiating user simply asked for help in identifying an unknown object they saw. With the Peas discovery, meanwhile, the intention at the beginning was primarily social, commenting that she found things that ``looked like peas''. In the circumbinary planet findings, by comparison, the citizens already had a hypothesis about what they had found, and had conducted a partial analysis prior to first posting. Each of the citizen-led discoveries exhibit several underlying differences among the situations, yet they were shaped by a common constraint; immediate access to scientific expertise when progress stalls or problems arise, a problem that the Zooniverse overcame with the social mechanisms described in the next section.
+
+\subsection{Theme 2: Community Development}
+
+% emax edited heavily:
+\textbf{\emph{DC3: (a) Granting roles and privileges with experience can motivate contributors to effectively assume community leadership and maintenance roles. (b) Volunteer moderators can effectively filter issues requiring the science team's attention.}} Given that the science team responsible for a Zooniverse project are limited in resources, establishing a community which functions semi-autonomously and even supports the science team in running the project can be highly beneficial. Across all Zooniverse projects analysed, the volume of posts and threads on the discussion forums (usually over 300 posts per day) meant that it was not feasible for the scientists to monitor all discussions in order support all possible serendipitous leads. To overcome this, certain members of the community were promoted to a \emph{Moderator} status, whose role was to filter and signal potential findings to the science team. However, in all four of the citizen-led discovery examples, at different stages of the process, the moderators lacked the necessary knowledge to answer the questions of their peers. However, when this situation occurred, the moderators were able to notify or consult the science team for their help.
+
+\textbf{\emph{DC4 (New): Timely support from science team members is essential to enable citizen-led discovery.}} Based on their experiences with a number of citizen-led discoveries, the Zooniverse team came to the conclusion that the amount of effort that needs to be invested in supporting the community is relative to the rate at which progress occurs. Although moderators are helpful, the science team is still required to intervene when progress stalls or when unexpected issues arise in the line of scientific enquiry. They are also indispensable as discoveries eventually run their course and the only thing left to do is publish a result - something the public are not comfortable with at present.
+
+The degree to which the science teams are involved in the discovery process varied amongst the examples provided. For the Voorwerp discovery, the science team took over the investigation shortly after the citizen pointed it out. In the other examples, however, there was more autonomous action by citizens; in the Peas case, for example, citizens self-organised a collection of samples before the science team took significant interest in their findings \cite{story-of-the-peas}. Alternatively, in the case of the convict worm, the science team intervened early and then immediately solicited to identify similar subjects. This was done because the science team did not know whether this was a one-off worm or common enough to constitute a distinct species. Finally, with the circumbinary planet discovery, the users conducted an entire hypothesis validation process, consisting of modelling and light curve analysis, using their own sets of tools. 
+
+\subsection{Theme 3: Task Design} 
+
+\textbf{\emph{DC5 (New): Designing tasks to encourage \emph{best guesses} avoids the \emph{don't know} effort trap}}. One common request that the team intentionally did not honour was to add a \emph{I don't know} or ``Skip to next'' button in task interfaces. The omission of such a button was a deliberate design decision based on early testing, which demonstrated that (as explained in a blog post~\cite{zooniverseblog}) the presence of such a button discouraged participants from attempting a \emph{best guess} to the more challenging exercises. When present, it was too easy for participants just to press the button to see more subjects, essentially providing a motivation loophole that allowed the reward of access to new subjects without doing any work. Such a loophole reduced a major source of motivation, which was gaining access to previously unseen subjects. Not having a button, meanwhile, encouraged users to consider difficult cases and to submit a best guess. Such ``best guesses'' were ultimately useful to the science team, because they could be checked with other participants' best guesses, which would not have been captured without them. (In lieu of a ``Don't know'' button, the team added a ``Discuss this'' prompt, which allowed people to post about and discuss more difficult cases, further improving the likelihood of their disambiguation.)
+
+%Design Claim: USP is extremely important for success
+% \textbf{\emph{DC6 (New): Sustaining participation of members requires a task that conforms to a set of engagement features, which include entertainment value, speed, difficulty, and reward}}
+\textbf{\emph{DC6 (New): Multiple factors influence the perceptions of a project, including memorability/interestingness of subjects, task difficulty, speed, and amount of feedback provided.}} The analysis of the user growth per project found that not all projects gained immediate uptake, and some were vastly more successful at securing long-term participation than others. As the team sought to identify the factors that influenced participants' perceptions the most through all the Zooniverse projects launched, several themes emerged. These were, first, the \emph{interesting-ness of subject}, \emph{speed and difficulty of task}, and related to these two, the \emph{frequency and form of implicit reward}. Other factors, such as type of task, domain of origin, worthiness of cause (e.g., cancer research or deep space research), and source of data, did not generate conclusive findings. (One additional factor that emerged was media type - image-orientated tasks were much more likely to sustain participation than audio tasks.)
+
+%The first factor, \emph{interestingness} was mainly based on an individual's personal interests. Science has already been shown to be a common motivating factor for many citizen scientists \cite{raddick2010galaxy,Tinati2014}, and certain domains tend to attract more interest than others. 
+
+The first factor, \emph{interestingness}, pertains to how likely the subjects being classified would be likely to be perceived to the general populace as interesting, or have aesthetic or emotional value, such as ``beautiful and mysterious'' photos of deep space, or the ``cute'' candid photos of animals of \emph{Snapshot Serengeti}. This interestingness metric was also affected by \emph{how often} interesting subjects came up amidst tasks with less interesting ones; specifically, some projects which sought to identify rare interesting objects which were only likely to come up once in a hundred or thousand subjects were perceived as less interesting than projects that had at least somewhat interesting subjects on every task. 
+
+Such insights led the Zooniverse team to re-design some of the tasks to avoid long stretches of monotonous subjects, that might influence participants to get bored and leave. To do so, for such rare-object search tasks, the team interspersed subjects in which objects were found by other users into the task queues of those who had not encountered such an interesting subject in a while. In \emph{Worm Watch Lab}, for example, an algorithm was devised that would take subjects that were classified by at least one user to contain egg-laying events, and scheduled these into the queues of users who had not witnessed egg-laying events in their most recent classifications. 
+
+However, even monotonous sequences of subjects sustained participation if they could be performed quickly. The team's interpretation of this result was twofold, first, that with quick tasks it was easy to gain an accrued sense of accomplishment, and such a feeling could be sustained with less effort. This factor was used to explain the high levels of participation in projects such as \emph{Ice Hunters} and \emph{Moon Zoo}, which had long sequences of extremely similar-looking subjects, that, although monotonous, could be completed quickly. The second interpretation was that since such tasks were conceptually simple, they offered a lower barrier of engagement, which encouraged more casual participation~\cite{Kuittinen:2007:CGD:1328202.1328221}, both from new and existing players.
+
+%When combined, factors of interestingness and task speed seemed to cumulatively affect engagement. For example, participants performed more tasks on average in the Space Warps project, which featured beautiful images of gravitational lenses, yet a fairly simple task workflow involving identifying the location and orientation of objects, than with Snapshot Serengeti, which also had interesting subjects but the slightly more difficult workflow of differentiating among specific species of animals. More difficult tasks, such as \emph{Notes from Nature} and \emph{Planet Hunters} naturally took longer to perform, and resulted in fewer tasks per user. % Those that were both difficult and potentially off-putting, such as the \emph{Worm Watch Lab} and \emph{Cell Slider} received the fewest classifications per user. 
+
+%\subsubsection{Tutorials and Feedback}
+
+\textbf{\emph{DC7 (New): Avoiding upfront tutorials in lieu of in-task UI guidance and interposed instructional tasks improves participant experience}}. In a majority of the Zooniverse projects, effective task completion required some degree of specialised knowledge about a particular scientific domain. For example, Space Warps required the identification of rare celestial phenomena called \emph{gravitational lenses}, while Snapshot Serengeti involved spotting and classifying animals particular to the Serengeti. New users to citizen science platforms were by and large unlikely to have the expertise necessary to complete such tasks a priori~\cite{ockerman2000review}. A simple approach to solving this problem, and one that was initially taken in Zooniverse, was to provide an instructional video for new participants. However, adding such a video meant postponing actual task, and consuming valuable minutes of participants' attention that might potentially be better put to use if such tutorials could be avoided. 
+
+In particular, project analytics revealed that a significant proportion of users left within 90 seconds of first visiting the site, and a video tutorial would likely consume a significant portion if not the entirety of such a duration. Two strategies were devised in response to this need; the first was to re-design task interfaces to reduce the need for tutorials, by increasing \emph{in situ} guidance. An example of this was the Snapshot Serengeti interface, which guided participants through a graphical decision-tree process to narrow down the species by identifying specific characteristics, such as the presence and kind of antlers/horns, size, colour and shape. However, a selection process of this nature would slow down experienced users who might immediately identify an animal they had seen before, the team introduced a second interaction path, a visual matrix designed to allow direct selection for expert participants. 
+
+In addition to guided task interfaces, a second approach was to make tutorials short, interactive, and ``feel'' like real tasks. The benefit of doing this would be that participants would feel like they were contributing immediately, making them likely to stay longer. A particular variation that was adopted was one the interspersing of real tasks with gold standard tutorial tasks, an approach proposed in the crowdsourcing community \cite{Oleson2011Crowdflower}. The Zooniverse team found that this strategy was particularly appropriate for bringing new participants into tasks involving rare object searches, that is, in which participants would likely have to sift through a large number of subjects prior to encountering the sought phenomena, such as the aforementioned gravitational lenses in Space Warps. In such tasks, interspersing gold standard true positives at a much higher hit rate than random helped not only teach individuals but also to keep them motivated to look for more.
+
+% spacewarps - we felt the task was rare object search (1 in 1000) not only is it diffuse with GS data, but we literally have to show them examples they go along, but we ahd to intersperse the tutorial with examples. so we interspersed. 
+% Tasks were felt'' like a real task and thus might be more engaging than a video, and later, by designing tutorial stages as \emph{simulated tasks} that looked like real tasks and 
+
+% Since tutorials were often used in other kinds of human computation tasks involving external reward, (such as Mechanical Turk work) tutorials were designed and evaluated on a trial basis on several projects, including Moon Zoo, Planet Hunters, and Milky Way Project. Long tutorials which included background material were more detrimental to eventual participation than shorter interventions which concentrated on conveying only the knowledge necessary to use the site. A common challenge to many human-computation systems involves teaching new users to perform new tasks. One common approach is to provide an instructional tutorial prior to the task itself (e.g.,\cite{gutheim2012fantasktic}). 
+
+% Zooniverse started with instructional videos
+
+% max
+% used to be a video tutorials. most of them went that's a nice video and then they left. they understood how the site work and they didn't carry out. we were wasting the one classification we were getting from users, so we switched to using inline tutorials, which is what we called them - and that worked really well, and what we've done since them is 
+% "no scientist should be allowed to write their own tutorials"
+% spacewarps - we felt the task was rare object search (1 in 1000) not only is it diffuse with GS data, but we literally have to show them examples they go along, but we ahd to intersperse the tutorial with examples. so we interspersed. 
+
+% you've only got people for like a minute - before theyre on to the next distraction, so we have to use the minute wisely
+
+
+%The implication of these trials was the need for a method to orient users while performing real tasks without any preliminary introductory explanation steps. This led the team to design \emph{in-situ} task guidance, inspired by previous work (e.g. \cite{ockerman2000review}). In Snapshot Serengeti, for example, the team created multiple \emph{interaction paths} within a single interface to support both new and experienced users; while new users could address a sequence of step-by-step questions such as ``Looks like (a cat)?'' that narrowed options down in a ``40 questions'' manner, advanced users could directly select the relevant species they identified from an interface matrix. 
+
+\textbf{\emph{DC8 (New): Periodic feedback can motivate continued participation}}. The Zooniverse team found that interspersing diagnostic ``gold standard'' tasks periodically among the real tasks, to provide participants feedback about their performance, caused an increase in sustained participation. This complements earlier studies showing that participants' performance may increase, e.g., that participants will be more accurate and faster at completing tasks with such feedback \cite{kluger1996effects}. Introducing ``gold standard'' tutorial tasks on several projects, including Galaxy Zoo, Planet Hunters, the Andromeda Project, and Space Warps also enabled first-time users to jump immediately into real tasks, even with no prior experience. The overwhelmingly large proportion of such users was reflected in the fact that an estimated 6,620,423 (or 15\%) of the total task classifications came from such transient users who never ultimately signed up. 
+% <========================
+
+\textbf{\emph{DC9 (New): Adding context to a task adds value and improves community engagement}}. Providing contextual information about tasks and subjects were often seen to benefit participant engagement at multiple levels, often in unexpected ways. In the Old Weather project, the primary goal was to transcribe sea captains' meteorological readings of 19th and 20th century, to build long-term models of ocean climate. However, many of the ship logbook pages also included other information about minor events on ships, such as crew and cargo movements, ship damage, and so on, as well as the occasional draft personal letter from a sailor on the ship. Initially, the team intended to remove this irrelevant information; however, due to the difficulty in doing so (being a task suitable for human-computation work in itself), it was decided to simply leave it in. This additional info intrigued many participants, who saw them as clues to a partially-obscured history. Discussions quickly grew on the forums about the significance of particular letters and activities on the ship, and participation in the project increased substantially. Participants exchanged thoughts on who the recipients of the letters may have been, the meanings of particular terminology, and gathered the histories of ships and crew members, drawing upon diverse information sources in their investigation. 
+
+While this kind of participation may have not directly benefited the project's objectives, it drove significant attention to the subjects, and managed to patch together several significant events in history from the perspective of ship logs, which may ultimately be of use to historians. The design of the Old Weather interface fostered this growth in several ways; first, an early decision to organise ship logs by ship, route, and date allowed users to reference logs by the same date, crew and route. By comparison, most other projects displayed subjects randomly based on classification need. Thus, preserving the context and provenance of information was seen to be effective towards engaging interest from a wide and varied participant community.
+
+\subsection{Theme 4: Public Relations and Engagement}
+
+% EMAX ====================>>
+Strategies for publicising and gathering attention to citizen science projects across media channels, including traditional broadcast media, is often overlooked in smaller citizen science projects. However, the Zooniverse team found that, perhaps unsurprisingly, such a PR strategy was rather essential to driving substantial uptake. Cross-media PR played multiple roles, including bootstrapping fresh projects with a wider demographic than ``digital natives'' who are active on social media, but also to get users back who had been previously active and forgotten about the platform. The following design claims summarise PR and attention, and discusses the role of the first 24-hours after launch (project launch profiles) in determining and assessing success.
+
+%Design Claim: publicity and endorsement design claim
+% \textbf{\emph{Design Claim: Media, publicity and endorsements can help bootstrap and rejuvenate a project's community}}
+\textbf{\emph{DC10 (New): Launch performance indicative of success; pre-launch PR important for recruiting new members and old.}} Performance during the launch of each Zooniverse project served a valuable indicator of its likely future success, as well as an opportunity to reflect on and assess the project's pre-launch PR activities. The team build up launch profiles by measuring, per project, the number of active and new participants per minute, identifying, where possible, how each new participant had heard about the project, average time spent on the site, discussion volume, and volume of social media. These metrics were monitored continuously over the first 24 hour period, and for the following month. Using such analysis, the team were able to effectively compare project launches, build models to predict short-term outcomes, and create strategies they called \emph{launch campaigns}.
+
+Successful launch campaigns included Snapshot Serengeti and Space Warps, which each experienced over 80,000 users during their respective first 24-hour ``launch days''. The Space Warps project experienced a initial surge of participants from other projects, in May 2013, with 10,000 people collectively contributing approximately 500,000 classifications in the its first 24-hour period. Participation in Space Warps continued beyond the immediate launch period, with more than 10,000 people unique visitors daily even three weeks later, a majority of whom were seasoned ``Zooites''. In January 2014, Space Warps was featured as part of BBC One's prime-time ``Stargazing Live'' event and at its peak received 1,000,000 classifications in just an hour. The experience rendered the Zooniverse platform in-operational for about 3 minutes, as tens of thousands of existing Zooniverse users simultaneous attempted to reset their Zooniverse account password. Analysis revealed that a majority of the surge of participants consisted of existing Zooniverse users, who had learned of the new project via the launch announcement newsletters. Such observations led to an effort to synthesise effective ``launch campaigns'' that would both publicise new projects and time them in a way to gather the greatest number of initial users. 
+
+%The Andromeda Project experienced such a surge of activity that the entire project was completed just sixteen days from launch. This was mostly due to participation from existing users. Almost one year later, in October 2013, the feat was repeated as the project's second phase (similar volume of work) was completed in just under one week. At that occasion, site traffic was largely driven by a surge of new users from the popular Facebook page, ``I Fucking Love Science'' (IFLS). 
+
+%By comparison, it took weeks for blogs and news sites to pick up on the project and publish about it more widely. The effect of this sizeable audience returning one year later shows how powerful it can be to align communities together - even when crossing media from a television broadcast to an online experience. 
+
+Coverage from traditional media outlets and online media aided the launch and growth of these projects. This included international media networks such as the BBC (on \emph{The Sky At Night} and \emph{Click}), widely-read scientific magazines including regular coverage in the ``Citizen Science''` column of \emph{Scientific American}, and featured articles in \emph{National Geographic}. Such coverage regularly resulted in traffic spikes and influxes of new large numbers of new users, some of whom will continue to participate for weeks or months. In Snapshot Serengeti, the science team submitted 12 images to the BBC's \emph{Camera-trap Photo of the Year} competition, based upon recommendations by users. This not only raised the profile of the project, but also had a positive effect on the active number of users, and the discussion activity within the forums. 
+
+% ==============> emax 
+\textbf{\emph{DC11 (New): Citizen science communities are the most effective at leading their own social media campaigns}}. Early on, the team noticed that many participants liked to copy images out of tasks and to share them on social media, such as images of galaxies they thought were beautiful. Such posts sometimes generated small boosts in participation, as people discovered the project through their friends/followers' posts. A secondary effect of such posts was that, based on forum discussions, already active users were also motivated to continue to perform tasks with the hopes of encountering similar beautiful subjects. 
+
+%Although the task workflow of a citizen science project is mainly an isolated process, by providing mechanisms to share content within the task workflow helped engage with other users within the community, and also increase a users rate of task completion. Findings show that by sharing specific content of objects in projects such as Galaxy Zoo to the forums and other media sources such as blogs and Twitter would increase the number of tasks completed amongst the active users (for those users that were active in both talk and task), as well as increase the number of new users joining the project. % whose findings? ours?
+
+Dedicated participant communities sometimes even saved projects from termination by sustaining them financially. When Snapshot Serengeti, a project that had attracted top participation levels, ran out out of funding, the science team turned to crowd-funding it. This marked the first participant-funded citizen science campaign for Zooniverse. To gain more widespread support, the team added a ``meme this" function to allow participants to create Internet memes out of Snapshot subjects. The resulting campaign ended up very successful, and has sustained the project to date.
+
+% One discussed example was the Snapshot Serengeti project, in which extensive and sharing and discussion of images of animals and phenomena both within the discussion forums and on social media, had already driven the project to be among the most popular, sustaining participation well after a popular launch. In August 2013 (eight months after project launch), the science team submitted 12 images to the BBC's Camera-trap Photo of the Year competition, based upon recommendations by users. This not only raised the profile of the project, but also had a positive effect on the active number of users, and the discussion activity within the forums. Furthermore, the sharing mechanism was exploited when the project was denied further funding and faced closure. Interviewees explained how the science team turned to the Snapshot Serengeti user base for help. Realising that the nature of the subjects used for the project made them suitable material for sharing, the team encouraged users to turn the subjects into memes, which could then be shared to draw in new users. The system was even modified to facilitate this, integrating a ``meme this" button was added to the talk page for each subject, which allowed text to easily be added to the image. As a consequence, the campaign aimed to encourage new users to the site, who would see that the project was in financial difficulty and donate, so that the project could continue.
+
+\begin{spacing}{0.8}
+\begin{table*}[ht!]
+\small
+%\begin{center}
+\begin{tabular}{p{2.5cm}p{10cm}p{4cm}}
+Theme & Design Claim & System Benefit \\
+\hline
+\hline
+\textbf{Task Specificity}& \emph{1. Focus on supporting community development and sociality early, using standard forum software if necessary; switch to bespoke tools as the community grows. } & Bootstrapping community \\
+
+&\emph{2. Task workflows which encourage discussion facilitates citizen-led discovery} & Serendipitous scientific discoveries\\
+
+%&\emph{Professional site design promotes the sense of a successful system and helps improve its reputation and gain more users} & \\
+
+\hline
+
+\textbf{Community Development} & \emph{3. Granting roles and privileges with experience can motivate contributors to effectively assume community leadership and maintenance roles} & Engaging with users, supporting professional team\\
+
+& \emph{4. Timely support from science team members is essential to enable citizen-led discovery} & Supporting users, finding new scientific discoveries \\
+
+\hline
+\textbf{Task Design} & \emph{5. Designing tasks to encourage best guesses avoids the ``don't know'' effort trap} & Obtaining new users\\
+
+& \emph{6. Factors that influence project engagement include memorability/interestingness of subjects, task difficulty, speed, and amount of feedback provided.} & Retaining users \\
+
+& \emph{7. In-task UI guidance and interposed instructional tasks improves participant experience, and increases the number of completed tasks} & Supporting users, Improving task completion \\
+
+& \emph{8. Providing users with periodic feedback can motivate continued participation} & User retention\\
+
+& \emph{9. Adding context to a task adds value and improves community engagement.} & Improving user engagement, Finding new scientific discoveries\\
+
+\hline
+\textbf{Public Relations and Engagement} & \emph{10. Launch performance indicative of success. Pre-launch PR important for recruiting new and previous participants} & Obtaining new users\\
+
+& \emph{11. CS communities are effective at leading their own social media campaigns} & Obtaining new users\\
+
+\hline
+\hline
+\end{tabular}
+\caption{\emph{Summary of Design Claims} - Design claims grouped by thematic category.}
+\label{tbl:recommendations}
+\normalsize
+%\end{center}
+\end{table*}
+\end{spacing}
+
+
+
+%====> Ramine was here: needs work still...
+\section{Discussion}
+% In this section, we revisit the DCs just described to draw explicit comparisons to DCs from Kraut et al.'s framework~\cite{kraut2012building}, as well as other studies of crowdsourcing and CS. Our goal is to draw together results highlighting views on the many dimensions relating to the design of citizen data analysis platforms. % as well as comparisons to crowdsourcing design results and studies of other citizen science platforms.
+
+% \subsection{Comparison with Online Communities}
+Several of the DCs derived in our analysis directly support Kraut et al.'s claims for building successful online communities~\cite{kraut2012building}. For example, \emph{giving individuals space to discuss and socialise} was seen in (DC1), while \emph{granting specific roles and privileges to particular individuals} further encouraged these participants to fulfil their given roles (DC3). Support for the suggestion to \emph{make easy-to-use tools for finding and tracking work} was seen in (DC2); the integration of Talk made it significantly easier to track subjects that needed disambiguation by allowing disparate subjects to be easily cross-referenced and collated by hashtag. It was seen that this functionality alone allowed the discussion volumes to grow without need for moderator involvement. Moreover, several of the insights pertaining to tutorial design, such as introducing gold standard tasks, coincide with the suggestions towards enhancing intrinsic motivation, including \emph{providing clear feedback and goals} (DC8). The idea of \emph{quickly grabbing participants' attention and keeping it throughout} was supported by DC7; upfront tutorials, by postponing the actual task, failed to get participants engaged and caused them to leave often before performing any tasks at all. Pertaining to anticipating and handling \emph{perverse incentives} and participants \emph{gaming the system}, this was seen as less of a concern in general in Zooniverse due to there being little incentive to do so; participation in Zooniverse is inherently non-competitive, and was found to be motivated by altruism, curiosity and other intrinsic drives. Despite this, the mere ability to see new, previously unseen subjects still served a kind of reward for performing tasks that would be devalued with the introduction of \emph{Don't know} or \emph{Skip} functionality. % a seemingly innocuous feature that would have led to a vast reduction in task completion levels.
+
+Among the other DCs from Kraut et al., some did not see much support in our findings. For example, propose that it is important to \emph{emphasise the importance of contributions}; the Zooniverse team, on the contrary, found that such emphasis seemed have little effect on participation. For example, the Cell Slider, despite being clearly oriented around an important altruistic cause, to benefit global cancer research, experienced among the lowest participation levels of the projects.
+
+% We also found that the design team was in a unique position to predict, with a level of certainty, if a project is to be succesful or not. As shown by Kairam et al. \cite{Kairam2012} study of online social networks, the early formation and development stages of an online community are critical for sustained participation, which were illustrated by DC7 and those related to public relations and engagement. Designing useful and engaging tutorials and guidence interfaces improves the likelyhood of participation initially and in the longterm.
+
+% \subsection{Comparison with Crowdsourcing}
+% new elena text here >
+Several of the DCs also support findings from human computation and microtask crowdsourcing. Understanding the motivations of participants are central to achieving successful participation, not only in citizen science platforms \cite{rotman2012}, but in peer-production and microtask systems such as MTurk, as highlighted by Schroer et al.'s study of participation in Wikipedian \cite{Schroer2009} and Kraufmann et al.'s \cite{kaufmann_more_2011} study of Human Intelligence Tasks (HITs) on MTurk. Such studies reveal how task specificity as well as task significance play an important role in participation, aligning with (DC6), the interestingness and complexity of a task and DC9, adding context to the task.
+
+Effective crowdsourcing requires both high accuracy and sustained work volume. The state of the art for crowdsourcing typically recommends providing clear instruction along with some amount of background context about each task (which complements our DC6), information about the ways in which the results will be used (DC8), and, most of all, timely and relevant feedback (DC8)~ \cite{dawson2012getting}.% Up-front instructions are more common in microtask crowdsourcing (DC7), although this has to do with the constraints inherent of most HIT microtask platforms. %In particular, as \cite{Staffelbach2014} observed, offering training at the start of the participation process enables new workers quickly to become skilled enough to succesfully complete tasks. This is important as it ensures an efficient and cohesive turker community, where newcomers are not ostracised by veteran members. 
+
+
+%Putting aside the different motives that drive participation, microtask designers are very concerned with the best ways to obtain accurate and timely crowd contributions. Any guide in this space will advise a requester, the person or organisation who solicits the help of the crowd, to document their tasks well (DC6), provide information about the ways in which the results will be used (DC8), as well as feedback (DC8), especially in those cases in which the work cannot be accepted \cite{dawson2012getting}. Up-front instructions are more common in microtask crowdsourcing (DC7), though this has to do with the constrained design means a requester is allowed to use within existing microtask platforms. In particular, as \cite{Staffelbach2014} observed, offering training at the start of the participation process enables new workers quickly to become skilled enough to succesfully complete tasks. This is important as it ensures an efficient and cohesive turker community, where newcommers are not ostracized by veteran members. 
+
+Relating our findings to \emph{games with a purpose}~\cite{vonahn2008}, which are human-computation platforms structured in game-like environments, the level of participant engagement has been found to vary considerably on the perceived interestingness of subjects being classified or examined~\cite{thaler2012}, much in accord with our DC6.  In addition, engagement was shown to depend on aspects of its representation, including the way questions/tasks were presented~\cite{inputagreement}. Rapid feedback (DC8) and minimally invasive tutorials (DC7) were also shown to boost engagement~\cite{zichermann2011gamification}.
+
+%REBUTTAL TO ADD 
+%
+%
+%to focus on relating DCs to crowdsourcing findings, such as designing effective tutorials (DC7), improving accuracy (DC5), and motivation (DC6). For example, we propose to briefly discuss how DC6/DC8/DC9 complement de Vreede et al.’s theoretical models of crowd worker motivation [1], Staffelbach’s work on crowdsourcing complex HITs [2] and Kaufmann’s experiments on intrinsic engagement [3]. Under “online communities” we wish to draw in a few specific comparisons, such as how early community patterns predict growth and longevity [4], and findings from the growth of communities such as Wikipedia [5] to DC10/11.
+%
+%
+
+% Several of the DCs also align well with recent observations from the crowdsourcing literature as well. It is, for instance, well-established that quick and easier tasks sustain greater participation rates for longer \cite{XXX} (DC6). Moreover, the problems associated with adding a \emph{Don't know} button would likely be well-known to any seasoned HIT designer seeking to maximise information gained from each HIT (DC5). Perhaps more directly, the practice of interleaving gold standard diagnostics (DC7) is relatively common in HIT tasks, except that those are more often used to assess participant performance than on encouraging sustained interaction (e.g., XXX). Mechanical-turk like HITs rarely have or need much context (DC9), however, or need extensive tuning of feedback (DC8), due to the direct extrinsic rewards provided. 
+
+% \subsection{Comparison with Other Citizen Science Projects}
+
+Our findings regarding the vital importance of social features and community support to project success complement other citizen studies of CS, including that by Mugar etc al.~\cite{Mugar2014PH} which documented the use of social features of CS platforms for varied kinds of engagement, including new types of practice. Furthermore, as DeVries et al.~\cite{DeVries2013} describes in their user participation activity model, the ability for a user to participate in discussion and analysis in parallel to task workflow (DC2) faciliates user generated queries and analysis.
+
+%THIS NEEDS SOMETHING MORE
+
+\subsection{Limitations}
+
+Despite the diversity represented by the various Zooniverse projects, similarities among them, such as their all being of the data analysis variety, means that our observations may not generalise to other kinds of CS. For example, in DC5, we described that the team found that \emph{not} providing a \emph{don't know} mechanism encouraged educated guessing, resulting in substantial effort savings. However, or data collection projects, it may be important for such uncertainty to be explicitly expressed and handled differently as found by Lukyanenko et al.~\cite{Lukyanenko2014}. Moreover, since Zooniverse's primary aim was \emph{scientific outcomes and discovery}, this has very likely influenced the team's decision and perspective; other systems may have different, even multiple, priorities. Educating users, for instance, was not among the team's design goals, which was reflected in decisions such as reducing tutorials to minimum in-situ guidance to complete tasks. While effective at increasing users' task time, this had the effect that users did not readily gain skill in task performance over time, as evidenced by a study showing that experienced users rarely outperformed new ones. 
+
+In addition, the use of structured reflection as a methodology requires consideration of several potential limitations; for example, the process may be influenced by selection biases that may effect the identification and reported importance of findings~\cite{Hilliard2006}. For example, recency, saliency and memory effects may have made more recent observations seem more important than older observations from earlier projects, for example. In order to counter such effects, we encouraged the design team to re-visit their log notebooks from the beginning during the exercises.
+
+Finally, the DCs presented in this paper should be treated as \emph{claims} that warrant further study, rather than as empirically-validated \emph{laws}. In this sense, they complement Kraut's et al.'s DCs as a theoretical basis; while their work synthesises a survey of a wide selection of studies, however, ours derives from a single team's first-hand experiences with a smaller-variety of projects. In order to further investigate our results, we are planning to work with the team on several controlled studies to validate and measuring effects of particular task-community design choices to follow on from this work.
+
+%subjective experiences with controlled experiments (which was not done due to 
+%should be considered we felt was a better place to start than trying to extrapolate from the project data, since our DCs have not been tested using any sort of controlled experiments. Therefore, the significance of the design claims stated, or their degree of interaction as factors influencing project success cannot be reliably extrapolated from this study.
+
+% A third limitation of our approach is that relied on the subjec-tive perceived importance as agreed by members of the team,rather than any objective or measured quantities. Such sub-jective importance, gained through the experience of seriallylaunching each of the projects, was, we felt, more meaning-ful than any simple quantitative measures taken either fromany single project’s analytics or in aggregate. However, dueto the time and resource requirements of launching permuta-tions of such science projects, the design claims have not beentested using any sort of controlled experiments.  Therefore,the significance of the design claims stated, or their degreeof interaction as factors influencing project success cannot bereliably extrapolated from this study
+
+% reflection are that comments were elicited and judged based on their subjective importance; therefore, none of the design claims presentedwere tested in an controlled setting.
+
+%A second characteristic was that, as previously found \cite{raddick2010galaxy}, intrinsic motivation, was responsible for the citizen participation among the Zooniverse projects. This influenced strategic choices made by the team as to whether and how to communicate scientific milestones to participants,. It was also seen to even inspire the science teams to conduct investigations and prepare articles expediently, as it was often felt that they ``owed it to the users'' to deliver on their commitment to publish results, given the dedication of the citizen community. Finally a specific characteristic of Zooniverse is that, as described earlier, its tasks are focused on \emph{data analysis}, rather than data collection or problem solving. While it is possible that our observations may generalise to other kinds of tasks, we refrain from making such claims given the complexity of understanding the many design dimensions of these systems.
+
+
+\section{Concluding Remarks and Future Work}
+
+The Zooniverse project provides a particularly important case study for citizen science not only due to its breadth, longevity, and success, but because it stands alone as an example where a single, small core team has been able to design, launch and conduct a large number of citizen science projects, using past experience to guide the next development. Such an allowed the team to gain extensive cumulative experience, and explore many design alternatives and strategies throughout. % Such exploration generated a huge variety of insights across aspects of task workflow design, interaction design, project launch and PR strategy strategies, project funding options, among others, of which we were only able to provide a summary of those deemed most important. 
+
+Among the most valuable lessons learned for the team was the fundamental shift from viewing CS participants ``crowd workers'' to true peers in the scientific process. Throughout Zooniverse's projects, community members often took up responsibilities previously among those of science teams, such as creating tutorial material for newcomers, cross referencing scientific data sources, killing false leads, and, even devising models to test hypotheses. Perhaps most unexpectedly, citizens led their own investigations that sometimes independently re-discovered something previously known (e.g. the Spanish Flu), but other times resulted in new, publishable science. In more than a few instances, participants took their investigations ``off the board'' and into their own tools to test hypothesis, bringing results and evidence back to the project for discussion. 
+
+To support the goal of having citizens become peers in the scientific process, the Zooniverse team have started two initiatives; first, to develop new Web-based links to essential scientific tools previously only available to science teams. The second, an experiment called \emph{Galaxy Zoo Quench} aims to involve citizens in the scientific journal preparation process themselves. The outcomes of these projects may empower participants to finally become true partners in the scientific process. 
+
+%In this paper, we studied the multi-system citizen science platform, Zooniverse, and exposed a number of system and community decisions that are important if a successful online community is to be achieved. Framed by a number of design claims and the empirical evidence in our study, we articulated a number of design recommendations which support the development of a citizen science projects from various aspect.
+
+%Whilst this paper has focused primarily on the Zooniverse platform, our findings have implications for the design of citizen science, and crowdsourcing in general. If we refer back to literature within this space, the main challenge identified is developing an online environment involves attracting the initial set of participants, followed by achieving sustained engagement. Within the context of the Zooniverse and generally, citizen science, the findings suggest that besides designing interesting and simple tasks, sustained engagement is achieved by facilitating and encouraging interaction beyond task completion. Prior to the Galaxy Zoo project, citizen scientists were not able to communicate, interact, or share their discoveries. The development of a communication platform which later became integrated within the task workflow not only provided a way for citizen scientists to interact, but also bridge the gap with the science team. 
+
+% While the Zooniverse team achieved significant success with respect to enabling scientific discovery through the participation of its million users, the team perceives that their investigation remains very unfinished. For one, many significant challenges remain in improving the mechanisms and means by which citizens can initiate, lead and coordinate investigations. In particular, given the autonomy demonstrated by volunteers towards carrying out their own investigations, the team are focusing on ways to open up access to both tools and data resources currently only available to the science team, so that these resources can be drawn upon in the process of citizen-led investigation. 
+
+% Often overlooked, there is an ever increasing role for Public Relations and Engagement and social media during the launch and growth of online communities. As findings have shown, obtaining coverage and press in non-digital forms of communications can significantly impact the growth and recommission of users, and leveraging social media platforms are strategies that should be considered during various stages of deployment.
+
+%In the context of crowdsourcing and online community building, whilst not all the design recommendations described in Table \ref{tbl:recommendations} are applicable, we argue that many can be re-purposed and help the process of development and deployment. We question how re-developing or introducing the features of integrated-discussion boards would impact already deployed crowdsourcing applications, and how this may reshape and shift the intrinsic and extrinsic motivations of citizen scientists.
+
+% <------------------ two -------------------
+
+
+%One concrete milestone towards this goal was the first release of ZooTools. Users will be able to explore all subjects in all databases and issue queries to extract certain ones with features, as only the science team previously could. 
+
+%Future work includes an investigate of how citizen-led discoveries are facilitated by the technical affordances of the Zooniverse platform. We are also expecting to build upon the existing literature of citizen science motivations in order to further develop our recommendation framework with respects to designing a system based upon the intrinsic and extrinsic values of the volunteers.
+
+\section{Acknowledgements}
+
+Support for this study was provided by the \emph{SOCIAM: The Theory and Practice of Social Machines} (EP/J017728/1) grant from the UK Engineering and Physical Sciences Research Council (EPSRC). We would also like to thank the Zooniverse team for their time and effort.
+
+\balance
+\begin{spacing}{0.9}
+\bibliographystyle{acm-sigchi}
+\bibliography{zoo-references}
+\end{spacing}
+
+\end{spacing}
+
+\end{document}
